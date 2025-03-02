@@ -10,7 +10,7 @@ LINK_REGEX_PATTERN = r"\[(.*?)\]\((.*?)\)"
 REGEX_HEADING_PATTERN = r"^(#{1,6}\ )(.*)"
 REGEX_CODE_PATTERN = r"(```)?(\w*)([\S\s]*)(```)"
 REGEX_QUOTE_PATTERN = r">\ ?(.*)"
-REGEX_UNORDERED_LIST_PATTERN = r"^((\*|\-)\ \w)"
+REGEX_UNORDERED_LIST_PATTERN = r"^(\* |\- )(.*)"
 REGEX_ORDERED_LIST_PATTERN = r"^([1-9]([0-9]+)?\.\ \w)"
 
 
