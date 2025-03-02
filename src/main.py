@@ -5,14 +5,17 @@ import pathlib
 
 from textnode import markdown_to_html_node, extract_title
 
-BASEPATH = sys.argv[1] if len(sys.argv) > 1 else "/"
+BASE_PATH = sys.argv[1] if len(sys.argv) > 1 else "/"
+BUILD_PATH = "public/"
+STATIC_PATH = "static/"
+CONTENT_PATH = "content/"
 
 def main():
-    if os.path.exists("public"):
-        shutil.rmtree("public")
+    if os.path.exists(BUILD_PATH):
+        shutil.rmtree(BUILD_PATH)
 
-    setup("static/")
-    generate_pages_recursive("content", "template.html", "public", BASEPATH)
+    setup(STATIC_PATH)
+    generate_pages_recursive(CONTENT_PATH, "template.html", BUILD_PATH, BASE_PATH)
 
 
 def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
@@ -51,15 +54,15 @@ def generate_page(from_path, template_path, dest_path, basepath):
 
 def setup(path: str):
 
-    public_path = "public/" + path.split("static/", 1)[1]
-    if not os.path.exists(public_path):
-        os.mkdir(public_path)
+    store_path = f"{BUILD_PATH}/" + path.split(STATIC_PATH, 1)[1]
+    if not os.path.exists(store_path):
+        os.mkdir(store_path)
 
     for item in os.listdir(path):
         item_path = os.path.join(path, item)
 
         if os.path.isfile(item_path):
-            shutil.copy(item_path, os.path.join(public_path, item))
+            shutil.copy(item_path, os.path.join(store_path, item))
         else:
             setup(item_path)
 
