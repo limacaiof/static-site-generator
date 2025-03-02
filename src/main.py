@@ -6,7 +6,7 @@ import pathlib
 from textnode import markdown_to_html_node, extract_title
 
 BASE_PATH = sys.argv[1] if len(sys.argv) > 1 else "/"
-BUILD_PATH = "public/"
+BUILD_PATH = "docs/"
 STATIC_PATH = "static/"
 CONTENT_PATH = "content/"
 
